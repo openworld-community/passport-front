@@ -1,6 +1,6 @@
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Alert, Button, FormControl, IconButton, Input, InputAdornment, InputLabel, TextField } from '@mui/material';
+import { Button, IconButton, TextField } from '@mui/material';
 import { useFormik } from 'formik';
 import { MouseEvent, useState } from 'react';
 import * as Yup from 'yup';
@@ -32,7 +32,6 @@ export const LoginLayout = () => {
         variant="standard"
         fullWidth
         name="username"
-
         helperText={formik.errors.username}
         value={formik.values.username}
         onChange={formik.handleChange}
@@ -66,7 +65,6 @@ export const LoginLayout = () => {
       <Button type="submit" style={{ marginTop: '30px' }} variant="contained" fullWidth>
         Login
       </Button>
-
     </form>
   );
 };
