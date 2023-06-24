@@ -1,6 +1,6 @@
-import { routerInstance } from '@m/router/instance';
 import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider } from '@mui/material/styles';
+import { routerInstance } from '@m/router/instance';
+import { ThemeProvider } from '@mui/material';
 import { theme } from '@ui/theme';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
