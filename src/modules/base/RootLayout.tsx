@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 export const RootLayout = () => {
   const location = useLocation();
@@ -24,7 +24,7 @@ export const RootLayout = () => {
               <Link  marginBottom={'10px'}  href={isSignUpPage ? '/login' : '/sign-up'}>{isSignUpPage ? 'or sign in instead' : 'or register instead'}</Link>
             </CardActions>
 
-            <LoginLayout />
+            <Outlet />
           </CardContent>
         </Card>
       </Box>
