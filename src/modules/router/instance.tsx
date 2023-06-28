@@ -1,5 +1,5 @@
 import { RootLayout } from '@m/base/RootLayout';
-import { ErrorPage } from '@m/errors/ErrorPage';
+import { ErrorPage } from '@core/errors/ErrorPage';
 import { LoginLayout } from '@m/login/LoginLayout';
 import { SignUpLayout } from '@m/sign-up/SignUpLayout';
 import { createBrowserRouter } from 'react-router-dom';

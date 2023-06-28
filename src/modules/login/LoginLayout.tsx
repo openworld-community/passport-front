@@ -1,70 +1,91 @@
+
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import HttpsIcon from '@mui/icons-material/Https';
+import TelegramIcon from '@mui/icons-material/Telegram';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Button, IconButton, TextField } from '@mui/material';
+import { Button, Checkbox, FormControlLabel, IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material';
+import Link from '@mui/material/Link';
 import { useFormik } from 'formik';
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
 import * as Yup from 'yup';
+
 export const LoginLayout = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(show => !show);
-  const handleMouseDownPassword = (event: MouseEvent) => {
-    event.preventDefault();
-  };
   const formik = useFormik({
     initialValues: {
-      username: '',
+      email: '',
       password: '',
     },
     onSubmit: values => {
       console.log('onSubmit', values);
     },
     validationSchema: Yup.object({
-      username: Yup.string().required('Username is required!'),
+      email: Yup.string().required('Email is required!'),
       password: Yup.string().required('Password is required!'),
     }),
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <TextField
-        id="username"
-        label="Username"
-        variant="standard"
-        fullWidth
-        name="username"
-        helperText={formik.errors.username}
-        value={formik.values.username}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        error={!!formik.errors.username}
-      />
-      <TextField
-        id="password"
-        label="Password"
-        variant="standard"
-        fullWidth
-        name="password"
-        helperText={formik.errors.password}
-        type={showPassword ? 'text' : 'password'}
-        value={formik.values.password}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        error={!!formik.errors.password}
-        InputProps={{
-          endAdornment: (
-            <IconButton
-              aria-label="toggle password visibility"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
-            >
-              {showPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
-          ),
-        }}
-      />
-      <Button type="submit" style={{ marginTop: '30px' }} variant="contained" fullWidth>
-        Login
+    <form onSubmit={formik.handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Typography display={'flex'} alignItems={'center'} columnGap={'30px'} marginBottom={'30px'} marginLeft={'30px'}>
+        Email
+        <TextField
+          style={{ width: '300px' }}
+          variant="outlined"
+          placeholder="Type your email"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AlternateEmailIcon />
+              </InputAdornment>
+            ),
+          }}
+          name="email"
+          helperText={formik.errors.email}
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={!!formik.errors.email}
+        />
+      </Typography>
+      <Typography display={'flex'} alignItems={'center'} columnGap={'30px'}>
+        Password
+        <TextField
+          style={{ width: '300px' }}
+          placeholder="Password"
+          variant="outlined"
+          name="password"
+          helperText={formik.errors.password}
+          type={showPassword ? 'text' : 'password'}
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={!!formik.errors.password}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <HttpsIcon />
+              </InputAdornment>
+            ),
+            endAdornment: (
+              <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword}>
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            ),
+          }}
+        />
+      </Typography>
+      <Link>Forgot your password?</Link>
+      <FormControlLabel style={{ margin: '20px 0' }} control={<Checkbox />} label="Remember me" />
+      <Button type="submit" variant="contained" style={{width:'150px'}}>
+        Sign in
       </Button>
+      <Stack direction="row" spacing={1} marginTop={'30px'}>
+        <Button variant="outlined">{<TelegramIcon />}</Button>
+        <Button variant="outlined">{<TelegramIcon />}</Button>
+      </Stack>
     </form>
   );
 };
