@@ -1,4 +1,5 @@
 import { RootLayout } from '@m/base/RootLayout';
+import { PasswordForget } from '@m/passwordForget/PasswordForget';
 import { ErrorPage } from '@core/errors/ErrorPage';
 import { LoginLayout } from '@m/login/LoginLayout';
 import { SignUpLayout } from '@m/sign-up/SignUpLayout';
@@ -17,6 +18,11 @@ export const routerInstance = createBrowserRouter([
         path: '/sign-up',
         element: <SignUpLayout />,
       },
+      {
+        path:'/password-forget',
+        element:<PasswordForget/>
+
+      }
     ],
   },
 ]);
