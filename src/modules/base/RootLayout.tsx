@@ -1,4 +1,3 @@
-
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -16,12 +15,14 @@ export const RootLayout = () => {
     <Container maxWidth="sm">
       <Box sx={{ my: 4 }}>
         <Card sx={{ minWidth: 275 }} elevation={3}>
-          <CardContent >
+          <CardContent>
             <Typography variant="h3" color="text.primary" gutterBottom>
               Peredelano
             </Typography>
-            <CardActions style={{justifyContent: 'flex-end'}}>
-              <Link  marginBottom={'10px'}  href={isSignUpPage ? '/login' : '/sign-up'}>{isSignUpPage ? 'or sign in instead' : 'or register instead'}</Link>
+            <CardActions style={{ justifyContent: 'flex-end' }}>
+              <Link marginBottom={'10px'} href={isSignUpPage ? '/login' : '/sign-up'}>
+                {isSignUpPage ? 'or sign in instead' : 'or register instead'}
+              </Link>
             </CardActions>
 
             <Outlet />
