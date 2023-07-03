@@ -3,9 +3,9 @@ import { ErrorPage } from '@m/errors/ErrorPage';
 import { LoginLayout } from '@m/login/LoginLayout';
 import { PasswordForget } from '@m/password-forget/PasswordForget';
 import { SignUpLayout } from '@m/sign-up/SignUpLayout';
-import { createBrowserRouter } from 'react-router-dom';
+import { createHashRouter } from 'react-router-dom';
 
-export const routerInstance = createBrowserRouter(
+export const routerInstance = createHashRouter(
   [
     {
       path: '/',
