@@ -1,6 +1,5 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import { routerInstance } from '@m/router/instance';
-
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '@ui/theme';
 import React from 'react';
