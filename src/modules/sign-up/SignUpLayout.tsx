@@ -84,7 +84,7 @@ export const SignUpLayout = () => {
         <TextField
           placeholder="******"
           variant="outlined"
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           style={{ width: '300px' }}
           name="password"
           value={formik.values.password}
@@ -107,9 +107,9 @@ export const SignUpLayout = () => {
         <TextField
           placeholder="******"
           variant="outlined"
-          type="confirmPassword"
+          type={showPassword ? 'text' : 'password'}
           style={{ width: '300px' }}
-          name="password"
+          name="confirmPassword"
           value={formik.values.confirmPassword}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
