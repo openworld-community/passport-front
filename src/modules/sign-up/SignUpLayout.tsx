@@ -4,11 +4,16 @@ import PersonIcon from '@mui/icons-material/Person';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Button, IconButton, Stack, TextField, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
+import { TextInput } from '@ui/fields/TextInput';
 import { DiscordIcon } from '@ui/icons/DiscordIcon';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
+
 export const SignUpLayout = () => {
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(show => !show);
@@ -18,7 +23,7 @@ export const SignUpLayout = () => {
       name: '',
       email: '',
       password: '',
-      confirmPassword: null,
+      confirmPassword: '',
       discordId: '',
       telegramId: '',
     },
@@ -30,8 +35,7 @@ export const SignUpLayout = () => {
       email: Yup.string().required('Email is required!').email('Email is invalid!'),
       password: Yup.string().min(5).max(10).required('Password is required!'),
       confirmPassword: Yup.string()
-        .nullable()
-        .oneOf([Yup.ref('password'), null], 'Passwords do not match!')
+        .oneOf([Yup.ref('password')], 'Passwords do not match!')
         .required('Password confirmation is required!'),
       discordId: Yup.string().min(3).max(256).required('Discord ID is required!'),
       telegramId: Yup.string().min(3).max(256).required('Telegram ID is required!'),
@@ -39,128 +43,118 @@ export const SignUpLayout = () => {
   });
 
   return (
-    <form
+    <Box
+      component="form"
       onSubmit={formik.handleSubmit}
-      style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', marginRight: '50px' }}
+      display="flex"
+      flexDirection="column"
+      alignItems="flex-end"
+      justifyContent="center"
     >
-      <Typography style={{ display: 'flex', alignItems: 'center', columnGap: '30px', marginBottom: '30px' }}>
-        Name
-        <TextField
-          style={{ width: '300px' }}
-          placeholder="Type your name"
-          type="text"
-          variant="outlined"
-          name="name"
-          value={formik.values.name}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          helperText={formik.errors.name}
-          error={!!formik.errors.name}
-          InputProps={{
-            startAdornment: <PersonIcon style={{ paddingRight: '5px' }} />,
-          }}
-        />
-      </Typography>
-      <Typography style={{ display: 'flex', alignItems: 'center', columnGap: '30px', marginBottom: '30px' }}>
-        Email
-        <TextField
-          type="email"
-          placeholder="Type your email"
-          variant="outlined"
-          style={{ width: '300px' }}
-          name="email"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={!!formik.errors.email}
-          helperText={formik.errors.email}
-          InputProps={{
-            startAdornment: <AlternateEmailIcon style={{ paddingRight: '5px' }} />,
-          }}
-        />
-      </Typography>
-      <Typography style={{ display: 'flex', alignItems: 'center', columnGap: '30px', marginBottom: '30px' }}>
-        Password
-        <TextField
-          placeholder="******"
-          variant="outlined"
-          type={showPassword ? 'text' : 'password'}
-          style={{ width: '300px' }}
-          name="password"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={!!formik.errors.password}
-          helperText={formik.errors.password}
-          InputProps={{
-            startAdornment: <HttpsIcon style={{ paddingRight: '5px' }} />,
-            endAdornment: (
-              <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword}>
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            ),
-          }}
-        />
-      </Typography>
-      <Typography style={{ display: 'flex', alignItems: 'center', columnGap: '30px', marginBottom: '30px' }}>
-        Confirm Pass
-        <TextField
-          placeholder="******"
-          variant="outlined"
-          type={showPassword ? 'text' : 'password'}
-          style={{ width: '300px' }}
-          name="confirmPassword"
-          value={formik.values.confirmPassword}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={!!formik.errors.confirmPassword}
-          helperText={formik.errors.confirmPassword}
-          InputProps={{
-            startAdornment: <HttpsIcon style={{ paddingRight: '5px' }} />,
-            endAdornment: (
-              <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword}>
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            ),
-          }}
-        />
-      </Typography>
-      <Typography style={{ display: 'flex', alignItems: 'center', columnGap: '30px', marginBottom: '30px' }}>
-        Discord ID
-        <TextField
-          type="text"
-          placeholder="Type your Discord username"
-          variant="outlined"
-          style={{ width: '300px' }}
-          name="email"
-          value={formik.values.discordId}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={!!formik.errors.discordId}
-          helperText={formik.errors.discordId}
-          InputProps={{
-            startAdornment: <DiscordIcon style={{ paddingRight: '5px' }} />,
-          }}
-        />
-      </Typography>
-      <Typography style={{ display: 'flex', alignItems: 'center', columnGap: '30px', marginBottom: '30px' }}>
-        Telegram ID
-        <TextField
-          type="text"
-          placeholder="Type your Telegram username"
-          variant="outlined"
-          style={{ width: '300px' }}
-          name="email"
-          value={formik.values.telegramId}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={!!formik.errors.telegramId}
-          helperText={formik.errors.telegramId}
-          InputProps={{
-            startAdornment: <TelegramIcon style={{ paddingRight: '5px' }} />,
-          }}
-        />
-      </Typography>
+      <TextInput
+        label="Name"
+        style={{ width: '300px' }}
+        placeholder="Type your name"
+        type="text"
+        variant="outlined"
+        name="name"
+        value={formik.values.name}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        helperText={formik.errors.name}
+        error={!!formik.errors.name}
+        InputProps={{
+          startAdornment: <PersonIcon style={{ paddingRight: '5px' }} />,
+        }}
+      />
+      <TextInput
+        label="Email"
+        type="email"
+        placeholder="Type your email"
+        variant="outlined"
+        style={{ width: '300px' }}
+        name="email"
+        value={formik.values.email}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={!!formik.errors.email}
+        helperText={formik.errors.email}
+        InputProps={{
+          startAdornment: <AlternateEmailIcon style={{ paddingRight: '5px' }} />,
+        }}
+      />
+      <TextInput
+        label="Password"
+        placeholder="******"
+        variant="outlined"
+        type={showPassword ? 'text' : 'password'}
+        style={{ width: '300px' }}
+        name="password"
+        value={formik.values.password}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={!!formik.errors.password}
+        helperText={formik.errors.password}
+        InputProps={{
+          startAdornment: <HttpsIcon style={{ paddingRight: '5px' }} />,
+          endAdornment: (
+            <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword}>
+              {showPassword ? <VisibilityOff /> : <Visibility />}
+            </IconButton>
+          ),
+        }}
+      />
+      <TextInput
+        label="Confirm Pass"
+        placeholder="******"
+        variant="outlined"
+        type={showPassword ? 'text' : 'password'}
+        style={{ width: '300px' }}
+        name="confirmPassword"
+        value={formik.values.confirmPassword}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={!!formik.errors.confirmPassword}
+        helperText={formik.errors.confirmPassword}
+        InputProps={{
+          startAdornment: <HttpsIcon style={{ paddingRight: '5px' }} />,
+          endAdornment: (
+            <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword}>
+              {showPassword ? <VisibilityOff /> : <Visibility />}
+            </IconButton>
+          ),
+        }}
+      />
+      <TextInput
+        label="Discord ID"
+        placeholder="Type your Discord username"
+        variant="outlined"
+        style={{ width: '300px' }}
+        name="discordId"
+        value={formik.values.discordId}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={!!formik.errors.discordId}
+        helperText={formik.errors.discordId}
+        InputProps={{
+          startAdornment: <DiscordIcon style={{ paddingRight: '5px' }} />,
+        }}
+      />
+      <TextInput
+        label="Telegram ID"
+        placeholder="Type your Telegram username"
+        variant="outlined"
+        style={{ width: '300px' }}
+        name="telegramId"
+        value={formik.values.telegramId}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={!!formik.errors.telegramId}
+        helperText={formik.errors.telegramId}
+        InputProps={{
+          startAdornment: <TelegramIcon style={{ paddingRight: '5px' }} />,
+        }}
+      />
       <Button type="submit" variant="contained" style={{ width: '150px', alignSelf: 'center' }}>
         Sign in
       </Button>
@@ -170,6 +164,6 @@ export const SignUpLayout = () => {
         </Button>
         <Button variant="outlined">{<TelegramIcon />}</Button>
       </Stack>
-    </form>
+    </Box>
   );
 };
