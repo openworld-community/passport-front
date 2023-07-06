@@ -19,7 +19,7 @@ export const RootLayout = () => {
             <Typography variant="h3" color="text.primary" gutterBottom>
               Peredelano
             </Typography>
-            <CardActions style={{ justifyContent: 'flex-end' }}>
+            <CardActions style={{ justifyContent: 'flex-end', padding: 0 }}>
               <Link marginBottom={'10px'} href={isSignUpPage ? '/login' : '/sign-up'}>
                 {isSignUpPage ? 'or sign in instead' : 'or register instead'}
               </Link>
