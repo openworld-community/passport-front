@@ -6,13 +6,9 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Box } from '@mui/material';
 import { Button } from '@mui/material';
 import { Checkbox } from '@mui/material';
-import { FormControl } from '@mui/material';
 import { FormControlLabel } from '@mui/material';
-import { Grid } from '@mui/material';
 import { IconButton } from '@mui/material';
-import { InputAdornment } from '@mui/material';
 import { Stack } from '@mui/material';
-import { TextField } from '@mui/material';
 import { Typography } from '@mui/material';
 import { TextInput } from '@ui/fields/TextInput';
 import Link from '@mui/material/Link';
@@ -103,7 +99,7 @@ export const LoginLayout = () => {
           label={<Typography style={{ fontSize: ' 0.75rem ' }}>Remember me</Typography>}
         />
       </Stack>
-      <Button type="submit" variant="contained" style={{ width: '150px', alignSelf: 'center' }}>
+      <Button type="submit" variant="contained" style={{ width: '150px', alignSelf: 'center', marginTop:'20px'}}>
         Sign in
       </Button>
       <Stack direction="row" spacing={1} style={{ marginTop: '30px', alignSelf: 'center' }}>

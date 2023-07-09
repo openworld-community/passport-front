@@ -149,7 +149,7 @@ export const SignUpLayout = () => {
           startAdornment: <TelegramIcon style={{ paddingRight: '5px' }} />,
         }}
       />
-      <Button type="submit" variant="contained" style={{ width: '150px', alignSelf: 'center' }}>
+      <Button type="submit" variant="contained" style={{ width: '150px', alignSelf: 'center', marginTop: '20px' }}>
         Sign up
       </Button>
       <Stack direction="row" spacing={1} style={{ marginTop: '30px', alignSelf: 'center' }}>

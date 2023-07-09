@@ -1,11 +1,7 @@
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import { Box } from '@mui/material';
 import { Button } from '@mui/material';
-import { FormControl } from '@mui/material';
-import { Grid } from '@mui/material';
-import { InputAdornment } from '@mui/material';
-import { TextField } from '@mui/material';
-import { Typography } from '@mui/material';
+import { TextInput } from '@ui/fields/TextInput';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -23,50 +19,31 @@ export const PasswordForget = () => {
   });
 
   return (
-    <Box display="flex" justifyContent="center" flexDirection="column">
-      <Grid
-        container
-        component="form"
-        onSubmit={formik.handleSubmit}
-        max-width="460px"
-        flexDirection="column"
-        alignContent="center"
-        alignItems="flex-end"
-      >
-        <FormControl
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            columnGap: '30px',
-            marginBottom: '30px',
-            height: '78px',
-            flexWrap: 'wrap',
-          }}
-        >
-          <Typography>Email</Typography>
-          <TextField
-            style={{ minWidth: '280px', maxWidth: '300px', height: '60px' }}
-            variant="outlined"
-            placeholder="Type your email"
-            type="email"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <AlternateEmailIcon />
-                </InputAdornment>
-              ),
-            }}
-            name="email"
-            helperText={formik.errors.email}
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={!!formik.errors.email}
-          />
-        </FormControl>
-      </Grid>
-      <Button type="submit" variant="contained" style={{ width: '150px', alignSelf: 'center' }}>
+    <Box
+      component="form"
+      display="flex"
+      flexDirection="column"
+      alignItems="flex-end"
+      justifyContent="center"
+      alignContent="center"
+      flexWrap="wrap"
+    >
+      <TextInput
+        label="Email"
+        type="email"
+        placeholder="Type your email"
+        variant="outlined"
+        name="email"
+        value={formik.values.email}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+        error={!!formik.errors.email}
+        helperText={formik.errors.email}
+        InputProps={{
+          startAdornment: <AlternateEmailIcon style={{ paddingRight: '5px' }} />,
+        }}
+      />
+      <Button type="submit" variant="contained" style={{ width: '150px', alignSelf: 'center', marginTop: '20px' }}>
         Send
       </Button>
     </Box>
