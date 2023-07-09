@@ -1,5 +1,11 @@
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
-import { Button, InputAdornment, TextField, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+import { Button } from '@mui/material';
+import { FormControl } from '@mui/material';
+import { Grid } from '@mui/material';
+import { InputAdornment } from '@mui/material';
+import { TextField } from '@mui/material';
+import { Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -12,38 +18,57 @@ export const PasswordForget = () => {
       console.log('onSubmit', values);
     },
     validationSchema: Yup.object({
-      email: Yup.string().required('Email is required!'),
+      email: Yup.string().required('Email is required!').email('Email is invalid!'),
     }),
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Typography display={'flex'} alignItems={'center'} columnGap={'30px'} marginBottom={'30px'} marginLeft={'30px'}>
-        Email
-        <TextField
-          style={{ width: '300px' }}
-          variant="outlined"
-          placeholder="Type your email"
-          type="email"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <AlternateEmailIcon />
-              </InputAdornment>
-            ),
+    <Box display="flex" justifyContent="center" flexDirection="column">
+      <Grid
+        container
+        component="form"
+        onSubmit={formik.handleSubmit}
+        max-width="460px"
+        flexDirection="column"
+        alignContent="center"
+        alignItems="flex-end"
+      >
+        <FormControl
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            columnGap: '30px',
+            marginBottom: '30px',
+            height: '78px',
+            flexWrap: 'wrap',
           }}
-          name="email"
-          helperText={formik.errors.email}
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          error={!!formik.errors.email}
-        />
-      </Typography>
-
-      <Button type="submit" variant="contained" style={{ width: '150px' }}>
+        >
+          <Typography>Email</Typography>
+          <TextField
+            style={{ minWidth: '280px', maxWidth: '300px', height: '60px' }}
+            variant="outlined"
+            placeholder="Type your email"
+            type="email"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <AlternateEmailIcon />
+                </InputAdornment>
+              ),
+            }}
+            name="email"
+            helperText={formik.errors.email}
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={!!formik.errors.email}
+          />
+        </FormControl>
+      </Grid>
+      <Button type="submit" variant="contained" style={{ width: '150px', alignSelf: 'center' }}>
         Send
       </Button>
-    </form>
+    </Box>
   );
 };
