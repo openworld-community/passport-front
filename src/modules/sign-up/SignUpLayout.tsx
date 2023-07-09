@@ -231,7 +231,7 @@ export const SignUpLayout = () => {
           />
         </FormControl>
         <Button type="submit" variant="contained" style={{ width: '150px', alignSelf: 'center' }}>
-          Sign in
+          Sign up
         </Button>
       </Grid>
       <Stack direction="row" spacing={1} style={{ marginTop: '30px', alignSelf: 'center' }}>
