@@ -42,7 +42,15 @@ export const SignUpLayout = () => {
   });
 
   return (
-    <Box component="form" display="flex" flexDirection="column" alignItems="flex-end" justifyContent="center" alignContent='center'>
+    <Box
+      component="form"
+      display="flex"
+      flexDirection="column"
+      alignItems="flex-end"
+      justifyContent="center"
+      alignContent="center"
+      flexWrap="wrap"
+    >
       <TextInput
         label="Name"
         placeholder="Type your name"
@@ -55,7 +63,7 @@ export const SignUpLayout = () => {
         helperText={formik.errors.name}
         error={!!formik.errors.name}
         InputProps={{
-          startAdornment: <PersonIcon style={{ paddingRight: '5px'}} />,
+          startAdornment: <PersonIcon style={{ paddingRight: '5px' }} />,
         }}
       />
       <TextInput
