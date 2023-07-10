@@ -19,7 +19,7 @@ const FormControlStyled = styled(FormControl)(() => ({
     flexWrap: 'wrap',
   },
   [`&.${formControlClasses.root} > div.${textFieldClasses.root}`]: {
-    height: '60px',
+    height: '64px',
     minWidth: '280px',
     maxWidth: '300px',
   },
