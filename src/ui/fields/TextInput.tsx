@@ -16,7 +16,10 @@ const FormControlStyled = styled(FormControl)(() => ({
     flexDirection: 'row',
     columnGap: '1.5rem',
     marginBottom: '1rem',
-    flexWrap: 'wrap',
+    '@media(max-width:468px)': {
+      display:'block'
+    }
+
   },
   [`&.${formControlClasses.root} > div.${textFieldClasses.root}`]: {
     height: '64px',
