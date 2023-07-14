@@ -14,7 +14,6 @@ export const PasswordReset = () => {
   const handleClickShowPassword = () => setShowPassword(show => !show);
   const formik = useFormik({
     initialValues: {
-      password: '',
       newPassword:'',
       confirmPassword: '',
     },
@@ -22,11 +21,9 @@ export const PasswordReset = () => {
       console.log('onSubmit', values);
     },
     validationSchema: Yup.object({
-      password: Yup.string().min(5).max(10).required('Password is required!'),
-      newPassword: Yup.string().min(5).max(10).required('New password is required!'),
+      newPassword: Yup.string().oneOf([Yup.ref('newPassword')], 'Passwords do not match!'),
       confirmPassword: Yup.string()
         .oneOf([Yup.ref('password')], 'Passwords do not match!')
-        .required('Confirm your password!'),
     }),
   });
 
@@ -40,26 +37,6 @@ export const PasswordReset = () => {
       alignContent="center"
       flexWrap="wrap"
     >
-      <TextInput
-        label="Password"
-        placeholder="******"
-        variant="outlined"
-        type={showPassword ? 'text' : 'password'}
-        name="password"
-        value={formik.values.password}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        error={!!formik.errors.password}
-        helperText={formik.errors.password}
-        InputProps={{
-          startAdornment: <HttpsIcon style={{ paddingRight: '5px' }} />,
-          endAdornment: (
-            <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword}>
-              {showPassword ? <VisibilityOff /> : <Visibility />}
-            </IconButton>
-          ),
-        }}
-      />
       <TextInput
         label="New password"
         placeholder="******"
