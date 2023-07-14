@@ -106,10 +106,6 @@ export const PasswordReset = () => {
       <Button type="submit" variant="contained" style={{ width: '150px', alignSelf: 'center', marginTop: '20px' }}>
        Reset
       </Button>
-      <Stack direction="row" spacing={1} style={{ marginTop: '30px', alignSelf: 'center' }}>
-        <Button variant="outlined">{<DiscordIcon fill={'#556cd6'} />}</Button>
-        <Button variant="outlined">{<TelegramIcon />}</Button>
-      </Stack>
     </Box>
   );
 };
