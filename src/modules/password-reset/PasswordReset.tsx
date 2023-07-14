@@ -1,13 +1,10 @@
 import HttpsIcon from '@mui/icons-material/Https';
-import TelegramIcon from '@mui/icons-material/Telegram';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Box } from '@mui/material';
 import { Button } from '@mui/material';
 import { IconButton } from '@mui/material';
-import { Stack } from '@mui/material';
 import { TextInput } from '@ui/fields/TextInput';
-import { DiscordIcon } from '@ui/icons/DiscordIcon';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
