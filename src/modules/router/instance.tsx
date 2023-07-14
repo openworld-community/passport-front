@@ -25,7 +25,7 @@ export const routerInstance = createHashRouter([
         element: <PasswordForget />,
       },
       {
-        path:'password-reset',
+        path:'password-reset/:guid',
         element:<PasswordReset/>
       },
     ],
