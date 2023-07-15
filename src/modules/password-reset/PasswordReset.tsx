@@ -2,19 +2,22 @@ import HttpsIcon from '@mui/icons-material/Https';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Box } from '@mui/material';
+import { Typography } from '@mui/material';
 import { Button } from '@mui/material';
 import { IconButton } from '@mui/material';
 import { TextInput } from '@ui/fields/TextInput';
 import { useFormik } from 'formik';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 
 export const PasswordReset = () => {
+  const { guid } = useParams<{ guid?: string }>();
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword(show => !show);
   const formik = useFormik({
     initialValues: {
-      newPassword:'',
+      newPassword: '',
       confirmPassword: '',
     },
     onSubmit: values => {
@@ -22,11 +25,16 @@ export const PasswordReset = () => {
     },
     validationSchema: Yup.object({
       newPassword: Yup.string().oneOf([Yup.ref('newPassword')], 'Passwords do not match!'),
-      confirmPassword: Yup.string()
-        .oneOf([Yup.ref('password')], 'Passwords do not match!')
+      confirmPassword: Yup.string().oneOf([Yup.ref('password')], 'Passwords do not match!'),
     }),
   });
-
+  if (!guid) {
+    return (
+      <Box>
+        <Typography>The link is incorrect!</Typography>
+      </Box>
+    );
+  }
   return (
     <Box
       component="form"
@@ -78,7 +86,7 @@ export const PasswordReset = () => {
         }}
       />
       <Button type="submit" variant="contained" style={{ width: '150px', alignSelf: 'center', marginTop: '20px' }}>
-       Reset
+        Reset
       </Button>
     </Box>
   );
