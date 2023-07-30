@@ -13,7 +13,7 @@ export const PasswordForget = () => {
       login: '',
     },
     onSubmit: async values => {
-      const res = await mutateAsync(values);
+      // const res = await mutateAsync(values);
     },
     validationSchema: Yup.object({
       login: Yup.string().required('Email is required!').email('Email is invalid!'),

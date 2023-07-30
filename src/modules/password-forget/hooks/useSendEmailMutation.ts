@@ -16,12 +16,12 @@ type MutationError = MutationResponse;
 export const useSendEmailMutation = (
   options?: Omit<UseMutationOptions<MutationResponse, MutationError, MutationInput, unknown>, 'mutationKey' | 'mutationFn'>,
 ) => {
-  return useMutation(
-    SEND_EMAIL_QUERY_KEY,
-    async (body: MutationInput) => {
-      const res = await API.post('/user/reset_password', { body: JSON.stringify(body) })
-      return res.json<MutationResponse>()
+  return useMutation({
+    mutationKey: SEND_EMAIL_QUERY_KEY,
+    mutationFn: async (body: MutationInput) => {
+      const res = await API.post('/user/reset_password', { body: JSON.stringify(body) });
+      return res.json<MutationResponse>();
     },
-    options,
-  );
+    ...options,
+  });
 };
