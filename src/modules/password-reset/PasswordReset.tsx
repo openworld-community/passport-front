@@ -20,7 +20,7 @@ export const PasswordReset = () => {
       newPassword: '',
       confirmPassword: '',
     },
-    onSubmit: values => {
+    onSubmit: (values) => {
       console.log('onSubmit', values);
     },
     validationSchema: Yup.object({

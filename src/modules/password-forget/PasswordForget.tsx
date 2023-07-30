@@ -4,17 +4,19 @@ import { Button } from '@mui/material';
 import { TextInput } from '@ui/fields/TextInput';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useSendEmailMutation } from './hooks/useSendEmailMutation';
 
 export const PasswordForget = () => {
+  const { mutateAsync } = useSendEmailMutation();
   const formik = useFormik({
     initialValues: {
-      email: '',
+      login: '',
     },
-    onSubmit: values => {
-      console.log('onSubmit', values);
+    onSubmit: async values => {
+      const res = await mutateAsync(values);
     },
     validationSchema: Yup.object({
-      email: Yup.string().required('Email is required!').email('Email is invalid!'),
+      login: Yup.string().required('Email is required!').email('Email is invalid!'),
     }),
   });
 
@@ -34,11 +36,11 @@ export const PasswordForget = () => {
         placeholder="Type your email"
         variant="outlined"
         name="email"
-        value={formik.values.email}
+        value={formik.values.login}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        error={!!formik.errors.email}
-        helperText={formik.errors.email}
+        error={!!formik.errors.login}
+        helperText={formik.errors.login}
         InputProps={{
           startAdornment: <AlternateEmailIcon style={{ paddingRight: '5px' }} />,
         }}
